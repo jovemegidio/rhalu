@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    /* Cores atualizadas para combinar com a nova estética */
+    --primary-color: #2c3e50;
+    --button-color: #3f3b4a; /* Verde escuro/preto do botão na imagem */
+    --error-color: #ff6b6b; /* Cor de erro mais vibrante */
+    --white: #ffffff;
+    --text-color: #e0e0e0; /* Cinza claro para o texto principal */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    /* --- MUDANÇA PRINCIPAL --- */
+    /* Define a imagem de fundo */
+    /* Certifique-se que 'Papeldeparede-alu.jpg' está na pasta 'public' */
+    background: url('Papeldeparede-alu.jpg') no-repeat center center;
+    background-size: cover; /* Faz a imagem cobrir toda a tela */
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+/* Efeito de vidro para o formulário de login */
+.login-form {
+    background: rgba(0, 0, 0, 0.35); /* Fundo semi-transparente */
+    backdrop-filter: blur(12px); /* Efeito de desfoque no fundo */
+    -webkit-backdrop-filter: blur(12px); /* Suporte para Safari */
+    padding: 45px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- LOGO REMOVIDA --- */
+.logo {
+    display: none; /* Logo removida conforme solicitado */
+}
+
+.login-form h2 {
+    color: var(--white); /* Texto branco para contraste */
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.login-form p {
+    color: var(--text-color); /* Texto cinza claro */
+    margin-bottom: 30px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color); /* Texto cinza claro */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: rgba(255, 255, 255, 0.08); /* Fundo sutil para o input */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    color: var(--white); /* Texto do input em branco */
+}
+
+.form-group input::placeholder { /* Placeholder para navegadores modernos */
+  color: #a0a0a0;
+  opacity: 1;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--button-color); /* Cor do botão da imagem */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #211779; /* Cor um pouco mais clara ao passar o mouse */
+}
+
+.error-message {
+    color: var(--error-color);
+    margin-top: 15px;
+    font-weight: 500;
+    height: 20px;
+    visibility: hidden; /* Escondido por padrão */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.error-message.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Estilos adicionais para "Lembrar-me" e "Esqueceu a senha?" (baseado na imagem) */
+.extra-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.extra-options label {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.extra-options input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.extra-options a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.extra-options a:hover {
+    color: var(--white);
+}

@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --light-gray: #f4f7f6;
+    --text-color-light: #bdc3c7;
+    --white: #ffffff;
+    --success: #2ecc71;
+    --error: #e74c3c;
+    --border-color: #e9eef2;
+    --sidebar-width: 250px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-gray);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.portal-container {
+    display: flex;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* --- AJUSTE DO CABEÇALHO DA SIDEBAR --- */
+.sidebar-header {
+    padding: 20px 15px 15px 15px; /* Padding ajustado para alinhar a logo */
+    text-align: center;
+    border-bottom: 1px solid #34495e;
+}
+
+/* --- AJUSTE DA LOGO (MAIOR) --- */
+.sidebar-header .logo-sidebar {
+    width: 100%;
+    max-width: 210px; /* Aumenta o tamanho máximo da logo */
+    height: auto;
+    margin-bottom: 5px; /* Pequena margem inferior */
+}
+
+/* --- AJUSTE DO MENU DE NAVEGAÇÃO --- */
+.sidebar-nav ul {
+    list-style: none;
+    padding: 10px 0; /* Padding superior reduzido para subir o menu */
+}
+
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    padding: 16px 25px;
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+    position: relative;
+    border-left: 4px solid transparent;
+}
+
+.sidebar-nav li a i {
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-nav li a:hover {
+    color: var(--white);
+}
+
+.sidebar-nav li a.active {
+    color: var(--white);
+    font-weight: 600;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 20px;
+    border-top: 1px solid #34495e;
+}
+
+.sidebar-footer a {
+    display: flex;
+    align-items: center;
+    color: var(--text-color-light);
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    font-weight: 500;
+}
+
+.sidebar-footer a:hover {
+    color: var(--white);
+    background-color: transparent;
+}
+
+.sidebar-footer a i {
+    margin-right: 15px;
+}
+
+/* --- Conteúdo Principal --- */
+.main-content {
+    flex-grow: 1;
+    padding: 40px;
+    margin-left: var(--sidebar-width);
+    transition: margin-left 0.3s ease-in-out;
+    width: calc(100% - var(--sidebar-width));
+}
+
+/* --- AJUSTE NO HEADER PRINCIPAL --- */
+.main-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 40px;
+}
+
+/* NOVO ESTILO PARA O TEXTO DO HEADER */
+.header-text {
+    display: flex;
+    flex-direction: column; /* Coloca os itens um abaixo do outro */
+}
+
+.main-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2; /* Ajusta a altura da linha */
+}
+
+.main-header p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ... O resto do seu CSS continua igual ... */
+
+/* ... O resto do seu CSS (seções, widgets, formulários) continua o mesmo ... */
+.content-section { display: none; background: var(--white); padding: 35px; border-radius: 12px; box-shadow: 0 4px 25px rgba(0,0,0,0.07); }
+.content-section.active { display: block; }
+.content-section h2 { color: var(--primary-color); margin-bottom: 30px; border-bottom: 3px solid var(--secondary-color); padding-bottom: 15px; font-size: 1.6rem; font-weight: 600; }
+.dashboard-widgets { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+.widget { background: var(--light-gray); padding: 25px; border-radius: 8px; border-left: 5px solid var(--secondary-color); }
+.widget h4 { margin-bottom: 10px; font-weight: 600; font-size: 1.1rem; }
+.widget-link { display: inline-block; margin-top: 15px; text-decoration: none; color: var(--secondary-color); font-weight: 600; }
+.filter-bar { margin-bottom: 25px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.filter-bar select, .filter-bar button { padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: 'Poppins', sans-serif; }
+.filter-bar button { background-color: var(--secondary-color); color: white; cursor: pointer; border: none; font-weight: 500; transition: background-color 0.2s ease; }
+.filter-bar button:hover { background-color: #2980b9; }
+.document-viewer { border: 1px solid var(--border-color); padding: 25px; min-height: 200px; border-radius: 8px; background: #fdfdfd; }
+.form-container { max-width: 700px; }
+.form-row { display: flex; flex-wrap: wrap; gap: 25px; margin-bottom: 15px; }
+.form-group { flex: 1 1 300px; display: flex; flex-direction: column; margin-bottom: 20px; }
+.form-group label { margin-bottom: 8px; font-weight: 500; }
+.form-group input, .form-group textarea { padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1em; font-family: 'Poppins', sans-serif; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); }
+.form-group input:disabled { background-color: #eee; cursor: not-allowed; box-shadow: none; }
+.form-actions { margin-top: 25px; }
+.submit-btn, #edit-btn { padding: 12px 25px; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: 1em; font-weight: 500; transition: opacity 0.2s ease; }
+.submit-btn:hover, #edit-btn:hover { opacity: 0.9; }
+.submit-btn { background-color: var(--success); }
+#edit-btn { background-color: var(--secondary-color); }
+#upload-status { margin-top: 20px; font-weight: 500; }
+
+/* --- RESPONSIVIDADE COM MENU LATERAL RETRÁTIL --- */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .main-header h1 {
+        font-size: 1.8rem;
+    }
+}

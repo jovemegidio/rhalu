@@ -1,0 +1,308 @@
+/* ============================================= */
+/* LAYOUT GERAL (ADMIN E FUNCIONÁRIO)            */
+/* ============================================= */
+
+/* GERAL E FONTES */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --cor-primaria: #1e293b;      /* Azul escuro da sidebar */
+    --cor-secundaria: #3b82f6;   /* Azul vibrante para destaques */
+    --cor-fundo: #f1f5f9;         /* Cinza muito claro do fundo */
+    --cor-container: #ffffff;    /* Branco dos painéis */
+    --cor-texto: #334155;         /* Cinza escuro para texto principal */
+    --cor-texto-claro: #cbd5e1;  /* Cinza claro para texto na sidebar */
+    --cor-borda: #e2e8f0;         /* Cinza claro para bordas */
+    --cor-sucesso: #10b981;       /* Verde para botões de sucesso */
+    --largura-sidebar: 260px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    overflow-x: hidden; /* Previne scroll horizontal */
+}
+
+.container-principal {
+    display: flex;
+}
+
+/* ============================================= */
+/* SIDEBAR (BARRA LATERAL)                       */
+/* ============================================= */
+
+.sidebar {
+    width: var(--largura-sidebar);
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1001;
+}
+
+.sidebar-header {
+    padding: 25px 20px;
+    text-align: center;
+    border-bottom: 1px solid #334155;
+}
+
+.logo-sidebar {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 20px 0;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    margin: 5px 15px;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+    background-color: #334155;
+    color: white;
+}
+
+.sidebar-nav a.active {
+    background-color: var(--cor-secundaria);
+    color: white;
+}
+
+.sidebar-nav a.logout {
+    margin-top: auto;
+}
+
+/* ============================================= */
+/* CONTEÚDO PRINCIPAL                            */
+/* ============================================= */
+
+.main-content {
+    flex-grow: 1;
+    margin-left: var(--largura-sidebar);
+    padding: 30px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.main-header {
+    background-color: var(--cor-container);
+    color: var(--cor-texto);
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.main-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.content-section {
+    display: none;
+    background: var(--cor-container);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.content-section.active {
+    display: block;
+}
+
+.content-section h2 {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--cor-borda);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* ============================================= */
+/* ESTILOS ESPECÍFICOS (FOTOS, TABELAS, FORMS)   */
+/* ============================================= */
+
+/* Estilos para as fotos dos funcionários */
+.foto-funcionario {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Transforma a imagem numa "bolinha" */
+    object-fit: cover;  /* Garante que a imagem preencha a bolinha sem distorcer */
+}
+
+.perfil-foto-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.perfil-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--cor-container);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+/* Tabela de Funcionários */
+.table-container {
+    overflow-x: auto;
+}
+#tabela-funcionarios {
+    width: 100%;
+    border-collapse: collapse;
+}
+#tabela-funcionarios th, #tabela-funcionarios td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--cor-borda);
+    text-align: left;
+    vertical-align: middle;
+}
+#tabela-funcionarios th {
+    background-color: #f8fafc;
+    font-weight: 600;
+}
+#tabela-funcionarios .btn-detalhes {
+    background-color: var(--cor-sucesso);
+    padding: 6px 12px;
+    font-size: 0.85em;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Formulários */
+#form-novo-funcionario fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+#form-novo-funcionario legend {
+    display: none;
+}
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: var(--cor-secundaria);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+.modal-content {
+    background-color: var(--cor-container);
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 650px;
+    border-radius: 12px;
+    position: relative;
+}
+.close-button {
+    color: #9ca3af;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ============================================= */
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS       */
+/* ============================================= */
+.menu-toggle {
+    display: none; /* Escondido por defeito em ecrãs grandes */
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    }
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+    .main-header {
+        padding: 15px;
+    }
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--cor-texto);
+        cursor: pointer;
+        z-index: 1002;
+    }
+}

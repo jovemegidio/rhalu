@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administrador - RH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="area-admin.css">
+</head>
+<body class="admin-page">
+    <div class="container-principal">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="Logo Monocromatico - Branco II - Aluforce.png" alt="Logo Aluforce" class="logo-sidebar">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#dashboard-section" class="nav-link active"><i class="fas fa-users"></i> Funcionários</a></li>
+                    <li><a href="#cadastro-section" class="nav-link"><i class="fas fa-user-plus"></i> Cadastrar</a></li>
+                    <li><a href="/login.html" id="logout-btn" class="nav-link logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                 <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Painel Administrativo</h1>
+            </header>
+
+            <section class="content-section active" id="dashboard-section">
+                <h2>Funcionários Cadastrados</h2>
+                <div class="table-container">
+                    <table id="tabela-funcionarios">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Cargo</th>
+                                <th>Email</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section class="content-section" id="cadastro-section">
+                <h2>Cadastrar Novo Funcionário</h2>
+                <form id="form-novo-funcionario">
+                    <!-- Dados de Acesso -->
+                    <fieldset>
+                        <legend>Dados de Acesso e Cargo</legend>
+                        <div class="form-row">
+                            <div class="form-group"><label for="email">Email:</label><input type="email" id="email" name="email" required></div>
+                            <div class="form-group"><label for="senha">Senha Provisória:</label><input type="password" id="senha" name="senha" required></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Cargo (Ex: RH, Financeiro, Funcionario):</label>
+                            <input type="text" id="role" name="role" required>
+                        </div>
+                    </fieldset>
+
+                    <!-- Dados Pessoais -->
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+                        <div class="form-group"><label for="nome_completo">Nome Completo:</label><input type="text" id="nome_completo" name="nome_completo" required></div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="data_nascimento">Data de Nascimento:</label><input type="date" id="data_nascimento" name="data_nascimento"></div>
+                            <div class="form-group"><label for="nacionalidade">Nacionalidade:</label><input type="text" id="nacionalidade" name="nacionalidade"></div>
+                            <div class="form-group"><label for="naturalidade">Naturalidade (Cidade/UF):</label><input type="text" id="naturalidade" name="naturalidade"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="filiacao_mae">Nome da Mãe:</label><input type="text" id="filiacao_mae" name="filiacao_mae"></div>
+                            <div class="form-group"><label for="filiacao_pai">Nome do Pai:</label><input type="text" id="filiacao_pai" name="filiacao_pai"></div>
+                        </div>
+                         <div class="form-row">
+                            <div class="form-group"><label for="estado_civil">Estado Civil:</label><input type="text" id="estado_civil" name="estado_civil"></div>
+                            <div class="form-group"><label for="dados_conjuge">Nome do Cônjuge:</label><input type="text" id="dados_conjuge" name="dados_conjuge"></div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Documentos -->
+                    <fieldset>
+                        <legend>Documentos</legend>
+                        <div class="form-row">
+                            <div class="form-group"><label for="cpf">CPF:</label><input type="text" id="cpf" name="cpf" required></div>
+                            <div class="form-group"><label for="rg">RG:</label><input type="text" id="rg" name="rg"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="titulo_eleitor">Título de Eleitor:</label><input type="text" id="titulo_eleitor" name="titulo_eleitor"></div>
+                            <div class="form-group"><label for="zona_eleitoral">Zona:</label><input type="text" id="zona_eleitoral" name="zona_eleitoral"></div>
+                            <div class="form-group"><label for="secao_eleitoral">Seção:</label><input type="text" id="secao_eleitoral" name="secao_eleitoral"></div>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group"><label for="ctps_numero">Nº da CTPS:</label><input type="text" id="ctps_numero" name="ctps_numero"></div>
+                             <div class="form-group"><label for="ctps_serie">Série:</label><input type="text" id="ctps_serie" name="ctps_serie"></div>
+                             <div class="form-group"><label for="pis_pasep">PIS/PASEP:</label><input type="text" id="pis_pasep" name="pis_pasep"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="cnh_numero">Nº da CNH:</label><input type="text" id="cnh_numero" name="cnh_numero"></div>
+                            <div class="form-group"><label for="cnh_categoria">Categoria:</label><input type="text" id="cnh_categoria" name="cnh_categoria"></div>
+                        </div>
+                        <div class="form-group"><label for="certificado_reservista">Certificado de Reservista:</label><input type="text" id="certificado_reservista" name="certificado_reservista"></div>
+                    </fieldset>
+
+                    <button type="submit" class="btn">Salvar Funcionário</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <div id="modal-detalhes" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Detalhes do Funcionário</h2>
+            <div class="perfil-foto-container">
+                <img id="modal-foto-preview" src="placeholder.png" alt="Foto do Funcionário" class="perfil-foto">
+            </div>
+            <div id="detalhes-funcionario-content"></div>
+            <hr>
+            <form id="form-upload-foto" class="form-group-upload">
+                <label for="arquivo-foto">Alterar Foto:</label>
+                <input type="file" id="arquivo-foto" name="foto" accept="image/png, image/jpeg">
+                <button type="submit" class="btn">Enviar Foto</button>
+                <div id="upload-foto-status"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CORREÇÃO APLICADA AQUI PARA GARANTIR A ÚLTIMA VERSÃO DO SCRIPT -->
+    <script src="app.js?v=2.6"></script>
+</body>
+</html>
