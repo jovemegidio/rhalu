@@ -36,7 +36,7 @@ async function fetchWithAuth(url, options = {}) {
         if (response.status === 401 || response.status === 403) {
             localStorage.clear();
             alert("Sessão inválida ou expirada. Por favor, faça login novamente.");
-            window.location.href = '/login.html';
+            window.location.href = 'login.html'; // CORRIGIDO
             return Promise.reject(new Error('Não autorizado'));
         }
         return response;
@@ -87,7 +87,7 @@ function initAdminPage() {
     const localUserData = JSON.parse(localStorage.getItem('userData'));
     if (!localUserData || localUserData.role !== 'admin') {
         alert("Acesso negado. Apenas administradores podem aceder a esta página.");
-        window.location.href = '/login.html';
+        window.location.href = 'login.html'; // CORRIGIDO
         return;
     }
     
@@ -499,7 +499,7 @@ function initAdminPage() {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 localStorage.clear();
-                window.location.href = '/login.html';
+                window.location.href = 'login.html'; // CORRIGIDO
             });
             return;
         }
@@ -527,7 +527,7 @@ async function initEmployeePage() {
     const localUserData = JSON.parse(localStorage.getItem('userData'));
     if (!localUserData || !localUserData.id) {
         alert("Sessão inválida. Por favor, faça login novamente.");
-        window.location.href = '/login.html';
+        window.location.href = 'login.html'; // CORRIGIDO
         return;
     }
 
@@ -541,7 +541,7 @@ async function initEmployeePage() {
             }
         } else {
             // Redireciona admins que não são especiais para a área de admin
-            window.location.href = '/areaadm.html';
+            window.location.href = 'areaadm.html'; // CORRIGIDO
             return;
         }
     }
@@ -657,7 +657,7 @@ async function initEmployeePage() {
             e.preventDefault();
             localStorage.clear();
             showToast("Logout bem-sucedido!");
-            setTimeout(() => window.location.href = '/login.html', 1000);
+            setTimeout(() => window.location.href = 'login.html', 1000); // CORRIGIDO
         });
 
         document.querySelectorAll('.nav-link:not(#logout-btn), .widget-link').forEach(link => {
@@ -751,4 +751,5 @@ async function initEmployeePage() {
         });
     }
 
-    loadInitialData() }
+    loadInitialData();
+}
