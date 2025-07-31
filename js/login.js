@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Redireciona para a página correta após o login
                 if (data.userData.role === 'admin') {
-                    window.location.href = '/areaadm.html';
+                    window.location.href = 'areaadm.html'; // CORRIGIDO
                 } else {
                     // CORREÇÃO: Redirecionando para index.html para funcionários
-                    window.location.href = '/index.html'; 
+                    window.location.href = 'index.html'; // CORRIGIDO
                 }
 
             } catch (error) {
