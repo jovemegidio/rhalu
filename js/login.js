@@ -1,50 +1,86 @@
 // public/js/login.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form'); 
+    const loginForm = document.getElementById('login-form');
     const errorMessageDiv = document.getElementById('error-message');
 
     if (loginForm) {
         loginForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            errorMessageDiv.textContent = ''; 
+            errorMessageDiv.textContent = '';
             errorMessageDiv.classList.remove('visible');
 
-            const email = document.getElementById('username').value; 
-            const password = document.getElementById('password').value;
+            // --- SENHA PADRÃO PARA TODOS OS USUÁRIOS ---
+            const senhaPadrao = 'aluforce@2025';
+
+            // --- LISTA DE USUÁRIOS AUTORIZADOS ---
+            const adminsAutorizados = [
+                'ti@aluforce.ind.br',
+                'isabella@aluforce.ind.br'
+            ];
+            const funcionariosAutorizados = [
+                'augusto@aluforce.ind.br',
+                'thaina.freitas@aluforce.ind.br',
+                'renata@aluforce.ind.br',
+                'fabiano.marques@aluforce.ind.br',
+                'fabiola@marques.ind.br',
+                'marcia@aluforce.ind.br',
+                'guilherme@aluforce.ind.br',
+                'marcos@aluforce.ind.br',
+                'ariel.silva@aluforce.ind.br',
+                'clemerson@aluforce.ind.br',
+                'thiago@aluforce.ind.br',
+                'paula@aluforce.ind.br'
+            ];
+            
+            const emailDigitado = document.getElementById('username').value.toLowerCase();
+            const passwordDigitada = document.getElementById('password').value;
 
             try {
-                // Usando caminho relativo, que é mais seguro para o servidor
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.message || 'Erro desconhecido');
+                // ETAPA 1: Validar a senha padrão
+                if (passwordDigitada !== senhaPadrao) {
+                    throw new Error("Senha incorreta. Verifique a senha e tente novamente.");
                 }
-                
-                // Salva os dados no localStorage para serem usados por outros scripts
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('userData', JSON.stringify(data.userData));
 
-                // Redireciona para a página correta após o login
-                if (data.userData.role === 'admin') {
-                    window.location.href = 'areaadm.html'; // CORRIGIDO
+                // ETAPA 2: Validar o e-mail (só acontece se a senha estiver correta)
+                let userData;
+                const nomeExtraido = emailDigitado.split('@')[0];
+                const nomeCompleto = nomeExtraido.charAt(0).toUpperCase() + nomeExtraido.slice(1);
+
+                if (adminsAutorizados.includes(emailDigitado)) {
+                    userData = {
+                        id: 1,
+                        nome_completo: `Admin (${nomeCompleto})`,
+                        email: emailDigitado,
+                        role: "admin"
+                    };
+                }
+                else if (funcionariosAutorizados.includes(emailDigitado)) {
+                    userData = {
+                        id: 2,
+                        nome_completo: nomeCompleto,
+                        email: emailDigitado,
+                        role: "employee"
+                    };
+                }
+                else {
+                    throw new Error("Email não cadastrado. Verifique o e-mail digitado ou contate o RH.");
+                }
+
+                // Salva os dados do usuário e redireciona
+                localStorage.setItem('token', 'local_test_token');
+                localStorage.setItem('userData', JSON.stringify(userData));
+
+                if (userData.role === 'admin') {
+                    window.location.href = 'areaadm.html';
                 } else {
-                    // CORREÇÃO: Redirecionando para index.html para funcionários
-                    window.location.href = 'index.html'; // CORRIGIDO
+                    window.location.href = 'index.html';
                 }
 
             } catch (error) {
                 console.error('Falha no login:', error);
                 errorMessageDiv.textContent = error.message;
-                errorMessageDiv.classList.add('visible'); // Mostra a mensagem de erro no CSS
+                errorMessageDiv.classList.add('visible');
             }
         });
     }
