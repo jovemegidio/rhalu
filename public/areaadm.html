@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Administrador - RH</title>
+    <title>Admin RH - Aluforce</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="area-admin.css">
 </head>
@@ -14,125 +14,141 @@
                 <img src="Logo Monocromatico - Branco II - Aluforce.png" alt="Logo Aluforce" class="logo-sidebar">
             </div>
             <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="#dashboard-section" class="nav-link active"><i class="fas fa-users"></i> Funcionários</a></li>
-                    <li><a href="#cadastro-section" class="nav-link"><i class="fas fa-user-plus"></i> Cadastrar</a></li>
-                    <li><a href="/login.html" id="logout-btn" class="nav-link logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-                </ul>
-            </nav>
+    <ul>
+        <li><a href="#dashboard-section" class="nav-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        
+        <li id="ver-meu-portal-link" style="display: none;">
+            <a href="/index.html" class="nav-link"><i class="fas fa-user-circle"></i> Ver Meu Portal</a>
+        </li>
+
+        <li><a href="#gestao-section" class="nav-link"><i class="fas fa-users-cog"></i> Gestão de Funcionários</a></li>
+        <li><a href="#cadastro-section" class="nav-link"><i class="fas fa-user-plus"></i> Cadastrar</a></li>
+        <li><a href="#avisos-section" class="nav-link"><i class="fas fa-bullhorn"></i> Avisos</a></li>
+        <li><a href="#" class="nav-link logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+    </ul>
+</nav>
         </aside>
 
         <main class="main-content">
             <header class="main-header">
                  <button class="menu-toggle" id="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1>Painel Administrativo</h1>
+                       <i class="fas fa-bars"></i>
+                 </button>
+                 <h1>Painel Administrativo de RH</h1>
             </header>
 
             <section class="content-section active" id="dashboard-section">
-                <h2>Funcionários Cadastrados</h2>
-                <div class="table-container">
-                    <table id="tabela-funcionarios">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Foto</th>
-                                <th>Nome</th>
-                                <th>Cargo</th>
-                                <th>Email</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                 <h2>Dashboard</h2>
+                 <div id="dashboard-widgets-container" class="dashboard-widgets">
+                    <!-- Conteúdo do Dashboard será carregado pelo app.js -->
+                 </div>
+            </section>
+            
+            <section class="content-section" id="gestao-section">
+                <div class="live-search-container">
+                    <h2>Busca Interativa de Funcionários</h2>
+                    <p>Digite o nome do funcionário para ver os detalhes em tempo real.</p>
+                    <div class="search-box-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Digite para pesquisar...">
+                    </div>
+                    <div id="searchResults">
+                        <!-- Resultados da busca serão carregados pelo app.js -->
+                    </div>
+                </div>
+                <div id="employeeDetailsContainer" class="details-form-container">
+                    <!-- Detalhes do funcionário, incluindo o campo de data de demissão, são carregados aqui dinamicamente pelo app.js -->
                 </div>
             </section>
             
-            <section class="content-section" id="cadastro-section">
-                <h2>Cadastrar Novo Funcionário</h2>
-                <form id="form-novo-funcionario">
-                    <!-- Dados de Acesso -->
-                    <fieldset>
-                        <legend>Dados de Acesso e Cargo</legend>
-                        <div class="form-row">
-                            <div class="form-group"><label for="email">Email:</label><input type="email" id="email" name="email" required></div>
-                            <div class="form-group"><label for="senha">Senha Provisória:</label><input type="password" id="senha" name="senha" required></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="role">Cargo (Ex: RH, Financeiro, Funcionario):</label>
-                            <input type="text" id="role" name="role" required>
-                        </div>
-                    </fieldset>
-
-                    <!-- Dados Pessoais -->
-                    <fieldset>
-                        <legend>Dados Pessoais</legend>
-                        <div class="form-group"><label for="nome_completo">Nome Completo:</label><input type="text" id="nome_completo" name="nome_completo" required></div>
-                        <div class="form-row">
-                            <div class="form-group"><label for="data_nascimento">Data de Nascimento:</label><input type="date" id="data_nascimento" name="data_nascimento"></div>
-                            <div class="form-group"><label for="nacionalidade">Nacionalidade:</label><input type="text" id="nacionalidade" name="nacionalidade"></div>
-                            <div class="form-group"><label for="naturalidade">Naturalidade (Cidade/UF):</label><input type="text" id="naturalidade" name="naturalidade"></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label for="filiacao_mae">Nome da Mãe:</label><input type="text" id="filiacao_mae" name="filiacao_mae"></div>
-                            <div class="form-group"><label for="filiacao_pai">Nome do Pai:</label><input type="text" id="filiacao_pai" name="filiacao_pai"></div>
-                        </div>
-                         <div class="form-row">
-                            <div class="form-group"><label for="estado_civil">Estado Civil:</label><input type="text" id="estado_civil" name="estado_civil"></div>
-                            <div class="form-group"><label for="dados_conjuge">Nome do Cônjuge:</label><input type="text" id="dados_conjuge" name="dados_conjuge"></div>
-                        </div>
-                    </fieldset>
-
-                    <!-- Documentos -->
-                    <fieldset>
-                        <legend>Documentos</legend>
-                        <div class="form-row">
-                            <div class="form-group"><label for="cpf">CPF:</label><input type="text" id="cpf" name="cpf" required></div>
-                            <div class="form-group"><label for="rg">RG:</label><input type="text" id="rg" name="rg"></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label for="titulo_eleitor">Título de Eleitor:</label><input type="text" id="titulo_eleitor" name="titulo_eleitor"></div>
-                            <div class="form-group"><label for="zona_eleitoral">Zona:</label><input type="text" id="zona_eleitoral" name="zona_eleitoral"></div>
-                            <div class="form-group"><label for="secao_eleitoral">Seção:</label><input type="text" id="secao_eleitoral" name="secao_eleitoral"></div>
-                        </div>
-                        <div class="form-row">
-                             <div class="form-group"><label for="ctps_numero">Nº da CTPS:</label><input type="text" id="ctps_numero" name="ctps_numero"></div>
-                             <div class="form-group"><label for="ctps_serie">Série:</label><input type="text" id="ctps_serie" name="ctps_serie"></div>
-                             <div class="form-group"><label for="pis_pasep">PIS/PASEP:</label><input type="text" id="pis_pasep" name="pis_pasep"></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label for="cnh_numero">Nº da CNH:</label><input type="text" id="cnh_numero" name="cnh_numero"></div>
-                            <div class="form-group"><label for="cnh_categoria">Categoria:</label><input type="text" id="cnh_categoria" name="cnh_categoria"></div>
-                        </div>
-                        <div class="form-group"><label for="certificado_reservista">Certificado de Reservista:</label><input type="text" id="certificado_reservista" name="certificado_reservista"></div>
-                    </fieldset>
-
-                    <button type="submit" class="btn">Salvar Funcionário</button>
-                </form>
-            </section>
-        </main>
-    </div>
-
-    <div id="modal-detalhes" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Detalhes do Funcionário</h2>
-            <div class="perfil-foto-container">
-                <img id="modal-foto-preview" src="placeholder.png" alt="Foto do Funcionário" class="perfil-foto">
+       <section class="content-section" id="cadastro-section">
+    <h2>Cadastrar Novo Funcionário</h2>
+    
+    <form id="form-novo-funcionario" class="form-container">
+        <fieldset>
+            <legend>Informações de Login e Contrato</legend>
+            <div class="form-grid">
+                <div class="form-group"><label for="cad-email">Email</label><input type="email" id="cad-email" name="email" required></div>
+                <div class="form-group"><label for="cad-senha">Senha</label><input type="password" id="cad-senha" name="senha" required></div>
             </div>
-            <div id="detalhes-funcionario-content"></div>
-            <hr>
-            <form id="form-upload-foto" class="form-group-upload">
-                <label for="arquivo-foto">Alterar Foto:</label>
-                <input type="file" id="arquivo-foto" name="foto" accept="image/png, image/jpeg">
-                <button type="submit" class="btn">Enviar Foto</button>
-                <div id="upload-foto-status"></div>
+            <div class="form-grid-3">
+                <div class="form-group"><label for="cad-cargo">Cargo (Role)</label><input type="text" id="cad-cargo" name="cargo" required></div>
+                <div class="form-group"><label for="cad-departamento">Departamento</label><input type="text" id="cad-departamento" name="departamento"></div>
+                <div class="form-group"><label for="cad-admissao">Data de Admissão</label><input type="date" id="cad-admissao" name="data_admissao"></div>
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            <div class="form-group"><label for="cad-nome">Nome Completo</label><input type="text" id="cad-nome" name="nome_completo" required></div>
+            <div class="form-grid">
+                <div class="form-group"><label for="cad-cpf">CPF</label><input type="text" id="cad-cpf" name="cpf" required></div>
+                <div class="form-group"><label for="cad-rg">RG</label><input type="text" id="cad-rg" name="rg"></div>
+                <div class="form-group"><label for="cad-nascimento">Data de Nascimento</label><input type="date" id="cad-nascimento" name="data_nascimento"></div>
+            </div>
+             <div class="form-group"><label for="cad-endereco">Endereço Completo</label><input type="text" id="cad-endereco" name="endereco"></div>
+             <div class="form-group"><label for="cad-telefone">Telefone</label><input type="tel" id="cad-telefone" name="telefone"></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Documentação</legend>
+            <div class="form-grid-3">
+                <div class="form-group"><label for="cad-ctps">Nº da CTPS</label><input type="text" id="cad-ctps" name="ctps_numero"></div>
+                <div class="form-group"><label for="cad-pis">PIS/PASEP</label><input type="text" id="cad-pis" name="pis_pasep"></div>
+                <div class="form-group"><label for="cad-titulo">Título de Eleitor</label><input type="text" id="cad-titulo" name="titulo_eleitor"></div>
+            </div>
+             <div class="form-grid-3">
+                <div class="form-group"><label for="cad-reservista">Cert. Reservista</label><input type="text" id="cad-reservista" name="certificado_reservista"></div>
+                <div class="form-group"><label for="cad-cnh">Nº da CNH</label><input type="text" id="cad-cnh" name="cnh_numero"></div>
+                <div class="form-group"><label for="cad-registro">Registro Profissional</label><input type="text" id="cad-registro" name="registro_profissional"></div>
+            </div>
+        </fieldset>
+
+         <fieldset>
+            <legend>Informações Adicionais</legend>
+            <div class="form-group">
+                <label for="cad-bancarios">Dados Bancários (Banco, Agência, Conta)</label>
+                <textarea id="cad-bancarios" name="dados_bancarios" rows="3"></textarea>
+            </div>
+            <p style="font-size: 0.9em; color: #7f8c8d; margin-top: 15px;">
+                <strong>Nota:</strong> Campos como ASO, Fotos 3x4, Comprovantes de residência, escolaridade e de filhos são geralmente documentos anexados. Recomenda-se que sejam enviados através da secção "Gestão de Funcionários" após o cadastro inicial.
+            </p>
+        </fieldset>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn-salvar">Cadastrar Funcionário</button>
+        </div>
+    </form>
+</section>
+
+<section class="content-section" id="avisos-section">
+    <h2>Gestão de Avisos</h2>
+    <div class="avisos-container">
+        <div class="form-container">
+            <h3>Publicar Novo Aviso</h3>
+            <form id="form-novo-aviso">
+                <div class="form-group">
+                    <label for="aviso-titulo">Título</label>
+                    <input type="text" id="aviso-titulo" required>
+                </div>
+                <div class="form-group">
+                    <label for="aviso-mensagem">Mensagem</label>
+                    <textarea id="aviso-mensagem" rows="6" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-salvar">Publicar Aviso</button>
+                </div>
             </form>
         </div>
+        <div class="lista-avisos-container">
+            <h3>Avisos Publicados</h3>
+            <ul id="lista-avisos-admin">
+                <!-- Avisos serão carregados aqui pelo app.js -->
+            </ul>
+        </div>
     </div>
+</section>
 
-    <!-- CORREÇÃO APLICADA AQUI PARA GARANTIR A ÚLTIMA VERSÃO DO SCRIPT -->
-    <script src="app.js?v=2.6"></script>
+    <script src="app.js?v=202507301812"></script>
 </body>
 </html>

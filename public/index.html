@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu RH - Aluforce</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="portal-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="Logo Monocromatico - Branco II - Aluforce.png" alt="Logo da Empresa" class="logo-sidebar">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#dashboard" class="nav-link active"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#holerite" class="nav-link"><i class="fas fa-file-invoice-dollar"></i> Holerite</a></li>
+                    <li><a href="#atestado" class="nav-link"><i class="fas fa-file-medical"></i> Anexar Atestado</a></li>
+                    <li><a href="#dados" class="nav-link"><i class="fas fa-user-edit"></i> Meus Dados</a></li>
+                    <!-- ATALHO PARA VOLTAR AO PAINEL DE ADMIN (visível apenas para admins especiais) -->
+                    <li id="ir-para-admin-link" style="display: none;">
+                        <a href="/areaadm.html" class="nav-link"><i class="fas fa-user-shield"></i> Voltar para Admin</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                 <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-text">
+                    <h1 id="welcome-message">Carregando...</h1>
+                    <p>Último acesso: <span id="last-login">30/07/2025, 19:19:00</span></p>
+                </div>
+            </header>
+
+            <!-- Seção Dashboard -->
+            <section id="dashboard" class="content-section active">
+                <h2>Início</h2>
+                <div class="dashboard-widgets">
+                    <a href="#holerite" class="widget-link">
+                        <div class="widget">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <h4>Meus Holerites</h4>
+                            <p>Acesse e baixe seus últimos holerites.</p>
+                        </div>
+                    </a>
+                    <a href="#atestado" class="widget-link">
+                        <div class="widget">
+                            <i class="fas fa-file-medical"></i>
+                            <h4>Anexar Atestado</h4>
+                            <p>Envie um atestado médico diretamente para o RH.</p>
+                        </div>
+                    </a>
+                    <a href="#dados" class="widget-link">
+                        <div class="widget">
+                            <i class="fas fa-user-edit"></i>
+                            <h4>Meus Dados</h4>
+                            <p>Visualize e edite suas informações cadastrais.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="announcements">
+                    <h3><i class="fas fa-bullhorn"></i> Comunicados Recentes</h3>
+                    <ul>
+                        <!-- Conteúdo carregado pelo app.js -->
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Seção Holerite -->
+            <section id="holerite" class="content-section">
+                <h2>Meus Holerites</h2>
+                <div class="filter-bar">
+                    <label for="holerite-mes">Mês de Competência:</label>
+                    <select id="holerite-mes">
+                        <option value="">Selecione um mês</option>
+                    </select>
+                    <button id="view-holerite">Visualizar</button>
+                </div>
+                <div id="holerite-viewer" class="document-viewer"></div>
+            </section>
+            
+            <!-- Seção Atestado -->
+            <section id="atestado" class="content-section">
+                <h2>Enviar Atestado Médico</h2>
+                <form id="atestado-form" class="form-container">
+                    <p>Anexe seu atestado (PDF, JPG, PNG). O RH será notificado.</p>
+                    <div class="form-group">
+                        <label for="atestado-file">Selecione o ficheiro:</label>
+                        <input type="file" id="atestado-file" name="atestado" accept=".pdf,.jpg,.jpeg,.png" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Atestado</button>
+                    <div id="upload-status"></div>
+                </form>
+            </section>
+
+            <!-- Seção Meus Dados (ATUALIZADA) -->
+            <section id="dados" class="content-section">
+                <h2>Meus Dados Cadastrais</h2>
+                <form id="dados-form" class="form-container">
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+                        <div class="form-group"><label for="nome_completo">Nome Completo:</label><input type="text" id="nome_completo" disabled></div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="data_nascimento">Data de Nascimento:</label><input type="text" id="data_nascimento" disabled></div>
+                            <div class="form-group"><label for="nacionalidade">Nacionalidade:</label><input type="text" id="nacionalidade" disabled></div>
+                            <div class="form-group"><label for="naturalidade">Naturalidade (Cidade/UF):</label><input type="text" id="naturalidade" disabled></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="filiacao_mae">Nome da Mãe:</label><input type="text" id="filiacao_mae" disabled></div>
+                            <div class="form-group"><label for="filiacao_pai">Nome do Pai:</label><input type="text" id="filiacao_pai" disabled></div>
+                        </div>
+                         <div class="form-row">
+                            <div class="form-group"><label for="estado_civil">Estado Civil (Editável):</label><input type="text" id="estado_civil" disabled></div>
+                            <div class="form-group"><label for="dados_conjuge">Nome do Cônjuge:</label><input type="text" id="dados_conjuge" disabled></div>
+                        </div>
+                        <div class="form-group"><label for="endereco">Endereço (Editável):</label><input type="text" id="endereco" disabled></div>
+                        <div class="form-group"><label for="dependentes">Nº de Dependentes (Editável):</label><input type="number" id="dependentes" min="0" disabled></div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Documentos</legend>
+                        <div class="form-row">
+                            <div class="form-group"><label for="cpf">CPF:</label><input type="text" id="cpf" disabled></div>
+                            <div class="form-group"><label for="rg">RG:</label><input type="text" id="rg" disabled></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="titulo_eleitor">Título de Eleitor:</label><input type="text" id="titulo_eleitor" disabled></div>
+                            <div class="form-group"><label for="zona_eleitoral">Zona:</label><input type="text" id="zona_eleitoral" disabled></div>
+                            <div class="form-group"><label for="secao_eleitoral">Seção:</label><input type="text" id="secao_eleitoral" disabled></div>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group"><label for="ctps_numero">Nº da CTPS:</label><input type="text" id="ctps_numero" disabled></div>
+                             <div class="form-group"><label for="ctps_serie">Série:</label><input type="text" id="ctps_serie" disabled></div>
+                             <div class="form-group"><label for="pis_pasep">PIS/PASEP:</label><input type="text" id="pis_pasep" disabled></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="cnh_numero">Nº da CNH:</label><input type="text" id="cnh_numero" disabled></div>
+                            <div class="form-group"><label for="cnh_categoria">Categoria:</label><input type="text" id="cnh_categoria" disabled></div>
+                        </div>
+                        <div class="form-group"><label for="certificado_reservista">Certificado de Reservista:</label><input type="text" id="certificado_reservista" disabled></div>
+                    </fieldset>
+                    <fieldset>
+                         <legend>Outros Dados</legend>
+                         <div class="form-row">
+                            <div class="form-group"><label for="telefone">Telefone (Editável):</label><input type="tel" id="telefone" disabled></div>
+                            <div class="form-group"><label for="email">E-mail:</label><input type="email" id="email" disabled></div>
+                         </div>
+                         <div class="form-row">
+                            <div class="form-group"><label for="data_admissao">Data de Admissão:</label><input type="text" id="data_admissao" disabled></div>
+                            <div class="form-group"><label for="data_demissao">Data de Demissão:</label><input type="text" id="data_demissao" disabled></div>
+                         </div>
+                         <div class="form-row">
+                             <div class="form-group"><label for="salario">Salário (R$):</label><input type="text" id="salario" disabled></div>
+                         </div>
+                         <div class="form-group">
+                             <label>Dados Bancários (Pagamento)</label>
+                             <div class="bank-details">
+                                 <span id="banco"></span> | Ag: <span id="agencia"></span> | CC: <span id="conta_corrente"></span>
+                             </div>
+                         </div>
+                    </fieldset>
+                    <div class="form-actions">
+                        <button type="button" id="edit-btn">Editar Dados</button>
+                        <button type="submit" id="save-btn" class="submit-btn" style="display:none;">Salvar Alterações</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="app.js?v=202507301919"></script>
+</body>
+</html>

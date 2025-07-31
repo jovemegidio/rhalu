@@ -4,28 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Portal RH</title>
-    <!-- O CSS agora aponta para o novo arquivo de estilo -->
     <link rel="stylesheet" href="login.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="login-container">
-        <!-- A classe do formulário foi atualizada para 'login-form' -->
         <form id="login-form" class="login-form">
             <h2>Bem-vindo de volta!</h2>
             <p>Faça login para acessar o portal.</p>
             
             <div class="form-group">
                 <label for="username">Email</label>
-                <!-- O campo de email agora tem um placeholder -->
                 <input type="email" id="username" name="username" placeholder="seuemail@empresa.com" required>
             </div>
             
-            <div class="form-group">
+            <div class="form-group password-group">
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Sua senha" required>
             </div>
 
-            <!-- Novas opções adicionadas conforme o design -->
             <div class="extra-options">
                 <label>
                     <input type="checkbox" name="remember-me"> Lembrar-me
@@ -33,14 +31,12 @@
                 <a href="#">Esqueceu a senha?</a>
             </div>
             
-            <button type="submit">Entrar</button>
+            <button type="submit" id="login-button">Entrar</button>
 
-            <!-- Elemento para exibir mensagens de erro -->
             <div id="error-message" class="error-message"></div>
         </form>
     </div>
     
-    <!-- O JavaScript continua o mesmo -->
-    <script src="login.js"></script>
+    <script src="/js/login.js"></script>
 </body>
 </html>
