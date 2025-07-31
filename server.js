@@ -29,7 +29,7 @@ const db = mysql.createPool({
 
 // --- CONFIGURAÇÃO DO UPLOAD DE ARQUIVOS ---
 const createStorage = (folder) => {
-    const uploadPath = path.join(__dirname, `public/uploads/${folder}`);
+    const uploadPath = path.join(__dirname, `docs/uploads/${folder}`);
     fs.mkdirSync(uploadPath, { recursive: true });
     return multer.diskStorage({
         destination: (req, file, cb) => cb(null, uploadPath),
